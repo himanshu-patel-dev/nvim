@@ -30,5 +30,13 @@ To start tutor, just open nvim and type `:Tutor`
 - delete a whole line `dd`.
 - delete a line `dd`, delete 5 lines `5dd`.
 - Undo `u`, undo whole line `U`.
+- Use `p` to put/paste.
+- Replace a char `r<char>` while in normal mode.
+- Move to bottom of file `G` and start of file with `gg`.
+- Search in forward direction `/`, search in backword direction `?`.
+- Find next occurance in search `n`, find prev occurance `N`.
+
+
+
 
 
