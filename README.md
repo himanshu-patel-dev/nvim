@@ -35,8 +35,18 @@ To start tutor, just open nvim and type `:Tutor`
 - Move to bottom of file `G` and start of file with `gg`.
 - Search in forward direction `/`, search in backword direction `?`.
 - Find next occurance in search `n`, find prev occurance `N`.
-
-
+- Use `%` to jump to matching bracket (,[,{ etc.
+- Find and Replace in line, `:s/old/new/g` without `g` this command only replace `old` with `new` in current line, first instance. While `g` replaced.
+- Find and Replace in file, `:%s/old/new/g` - change all occurance in file. `:%s/old/new/gc` - change all occurange in file with prompt.
+- Run any shell command, `:!ls`, i.e. `:!<command>`.
+- Save current file `:w <filename>`. Select test after pressing `v` in normal mode and then save the file to write selected content to the file.
+- Read the file content `r <FILENAME>` (this also read and paste the content into current file). This comes in handy when we have to paste output of a shell command into a file, then just do `r !ls`.
+- Start new line and insert mode below the line of cursor - `o` (small O).
+- Start new line and insert mode above the line of cursor - `O` (capital O).
+- Start visual mode with `v` and select the test, press `y` to yank/copy the text and paste using `p`.
+- Set options like this `:set hls is` (highlight search and partial matches) and `:set ic` (ignore case in search).
+- Search only one word without ignoring case `/<word>\c`.
+- Get some help `:help`. While opening help it opens in a split window. Use this command to switch between windows `<C-w><C-w>`
 
 
 
