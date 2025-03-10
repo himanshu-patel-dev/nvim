@@ -49,4 +49,19 @@ To start tutor, just open nvim and type `:Tutor`
 - Get some help `:help`. While opening help it opens in a split window. Use this command to switch between windows `<C-w><C-w>`
 
 
+## Kick Start NVIM
+- https://github.com/nvim-lua/kickstart.nvim?tab=readme-ov-file
+
+Install dependencies as
+```
+sudo add-apt-repository ppa:neovim-ppa/unstable -y
+sudo apt update
+sudo apt install make gcc ripgrep unzip git xclip neovim
+```
+
+
+Install Kickstart init.lua
+```
+git clone https://github.com/nvim-lua/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+```
 
