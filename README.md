@@ -65,3 +65,24 @@ Install Kickstart init.lua
 git clone https://github.com/nvim-lua/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
 ```
 
+Open Lazy in nvim
+```
+:Lazy
+```
+
+- Updated `init.lua` to ignore arrow keys.
+- source `init.lua` as `source %`
+- Move between windows/splits using `CTRL+h/j/k/l`
+- Open terminal as `:terminal` and press `i` to start typeing in terminal. Then use `<Esc><Esc>` to move out.
+- Split vertically `CTRL+w , v`, or `:vsplit`.
+- Split Horizontally `CTRL+w, s`, or `:split`.
+- Reset size of split `CTRL+w, =`.
+- Change Horizontal split to vertical
+
+- Put this in `init.lua` to use Alt for changing split orientation.
+```bash
+-- Use Alt key to change orientation of splits
+vim.keymap.set('n', '<M-1>', '<C-w>t<C-w>K', { desc = 'Convert vertical to horizontal split' })
+vim.keymap.set('n', '<M-2>', '<C-w>t<C-w>H', { desc = 'Convert horizontal to vertical split' })
+```
+
