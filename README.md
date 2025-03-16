@@ -132,8 +132,9 @@ return {
     end,
 }
 ```
-  - `CTRL+\` to toggle terminal, terminal retains state.
-  - For more: https://github.com/akinsho/toggleterm.nvim
+
+  1. `CTRL+\` to toggle terminal, terminal retains state.
+  2. For more: https://github.com/akinsho/toggleterm.nvim
 
 - Comment
 
@@ -234,7 +235,9 @@ reporters:
 plugins:
   - solargraph-rails
 ```
+
 - Update `init.lua` to have below changes
+
 ```lua
 {
   solargraph = {
@@ -252,14 +255,15 @@ plugins:
   },
 }
 ```
+
 And here
+
 ```lua
 vim.list_extend(ensure_installed, {
   'stylua',     -- Used to format Lua code
   'solargraph', -- Added Solargraph to Mason install list
 })
 ```
-
 
 - Use `:LspInfo` and check if you see below output
 
@@ -286,10 +290,25 @@ vim.list_extend(ensure_installed, {
   - solargraph docs:
 ```
 
+## Install Markdownlint
+
+```bash
+nvm --version
+npm --version
+
+# if required update nvm
+nvm install --lts
+
+# then install markdownlint
+npm install -g markdownlint-cl
+# check
+markdownlint --version
+
+```
 
 ## To Do
-- Checkout this one: https://github.com/lewis6991/gitsigns.nvim
+
+- Checkout this one: [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
 - Save editor state when quit
 - Manage multiple tabs
 - Max or Minimize splits
-
