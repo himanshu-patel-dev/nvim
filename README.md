@@ -47,6 +47,7 @@ To start tutor, just open nvim and type `:Tutor`
 - Set options like this `:set hls is` (highlight search and partial matches) and `:set ic` (ignore case in search).
 - Search only one word without ignoring case `/<word>\c`.
 - Get some help `:help`. While opening help it opens in a split window. Use this command to switch between windows `<C-w><C-w>`
+- Whlie in file do `:Ex` to open explorer, and while in explorer do `%` to create a new file.
 
 
 ## Kick Start NVIM
@@ -71,9 +72,16 @@ Open Lazy in nvim
 ```
 
 - Updated `init.lua` to ignore arrow keys.
+```
+vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+```
+
 - source `init.lua` as `source %`
 - Move between windows/splits using `CTRL+h/j/k/l`
-- Open terminal as `:terminal` and press `i` to start typeing in terminal. Then use `<Esc><Esc>` to move out.
+- Open terminal as `:terminal` and press `i` to start typeing in terminal. Then use `<Esc><Esc>` to move out. If this don't work then use `CTRL+\,CTRL+n`.
 - Split vertically `CTRL+w , v`, or `:vsplit`.
 - Split Horizontally `CTRL+w, s`, or `:split`.
 - Reset size of split `CTRL+w, =`.
@@ -84,5 +92,49 @@ Open Lazy in nvim
 -- Use Alt key to change orientation of splits
 vim.keymap.set('n', '<M-1>', '<C-w>t<C-w>K', { desc = 'Convert vertical to horizontal split' })
 vim.keymap.set('n', '<M-2>', '<C-w>t<C-w>H', { desc = 'Convert horizontal to vertical split' })
+```
+
+## Plugins
+Create a dir `~/.config/nvim/lua/custom/plugins/` if not already exits. Any file inside `plugins` dir will be source in `init.lua`. This directory is specifically for user's custom plugins other than the plugins that comes with kickstart.
+
+Add this lines in `init.lua` to so we import the plugins from these two places, these lines import plugins from `~/.config/nvim/lua/kickstart/plugins/` and `~/.config/nvim/lua/custom/plugins/` without overriding over the plugins already present in it.
+
+```lua
+-- NOTE: Here is where you install your plugins.
+require('lazy').setup({
+  { import = 'kickstart.plugins' }, -- Keep existing Kickstart plugins
+  { import = 'custom.plugins' }, -- Load your custom plugins
+```
+
+- Terminal
+Make a file `toggleterm.lua` and save this into the file
+
+```lua
+return {
+    'akinsho/toggleterm.nvim',
+    version = '*',
+    config = function()
+      require('toggleterm').setup {
+        size = 15, -- Height for horizontal terminal
+        open_mapping = [[<C-\>]], -- Default key to toggle
+        shade_terminals = true,
+        direction = 'float', -- Options: 'vertical' | 'horizontal' | 'tab' | 'float'
+        float_opts = {
+          border = 'curved', -- 'single', 'double', 'shadow', 'curved'
+        },
+      }
+    end,
+}
+```
+
+- Comment
+Make a file `comment.lua` and save this into the file
+```lua
+return {
+  'numToStr/Comment.nvim',
+  config = function()
+    require('Comment').setup()
+  end,
+}
 ```
 
