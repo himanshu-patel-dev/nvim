@@ -107,6 +107,7 @@ require('lazy').setup({
 ```
 
 - Terminal
+
 Make a file `toggleterm.lua` and save this into the file
 
 ```lua
@@ -135,6 +136,7 @@ return {
   - For more: https://github.com/akinsho/toggleterm.nvim
 
 - Comment
+
 Make a file `comment.lua` and save this into the file
 ```lua
 return {
@@ -151,6 +153,7 @@ return {
   - For more: https://github.com/numToStr/Comment.nvim
 
 - Telescope
+
   - `<leader>sh` to pop open fuzzy file search.
 ```lua
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
@@ -204,7 +207,89 @@ return {
 
 ```
 
+## LSP for Ruby - Solargraph
+
+- Install solargraph `gem install solargraph`
+- Make `solargraph.yml` file in rails directory
+
+```yml
+---
+include:
+  - "app/**/*.rb"
+  - "lib/**/*.rb"
+exclude:
+  - "db/schema.rb"
+  - "db/migrate/**/*.rb"
+  - "config/**/*.rb"
+  - "vendor/**/*.rb"
+  - "spec/**/*.rb"
+  - "test/**/*.rb"
+  - "node_modules/**/*.rb"
+  - "tmp/**/*.rb"
+  - "log/**/*.rb"
+require: []
+domains: []
+reporters:
+  - rubocop
+plugins:
+  - solargraph-rails
+```
+- Update `init.lua` to have below changes
+```lua
+{
+  solargraph = {
+    filetypes = { 'ruby' },
+  },
+
+  lua_ls = {
+    settings = {
+      Lua = {
+        completion = {
+          callSnippet = 'Replace',
+        },
+      },
+    },
+  },
+}
+```
+And here
+```lua
+vim.list_extend(ensure_installed, {
+  'stylua',     -- Used to format Lua code
+  'solargraph', -- Added Solargraph to Mason install list
+})
+```
+
+
+- Use `:LspInfo` and check if you see below output
+
+```bash
+ lspconfig: require("lspconfig.health").check()    
+      
+  LSP configs active in this session (globally)    
+  - Configured servers: solargraph, lua_ls    
+  - OK Deprecated servers: (none)    
+      
+  LSP configs active in this buffer (bufnr: 1)    
+  - Language client log: ~/.local/state/nvim/lsp.log    
+  - Detected filetype: ruby    
+  - 1 client(s) attached to this buffer    
+  - Client: solargraph (id: 1, bufnr: [1, 28])    
+    root directory:    ~/Workspace/repos/adwyze/    
+    filetypes:         ruby    
+    cmd:               ~/.local/share/nvim/mason/bin/solargraph stdio    
+    version:           0.52.0    
+    executable:        true    
+    autostart:         true    
+      
+  Docs for active configs:    
+  - solargraph docs:
+```
+
+
 ## To Do
 - Checkout this one: https://github.com/lewis6991/gitsigns.nvim
-- Split terminals
+- Save editor state when quit
+- Manage multiple tabs
+- Max or Minimize splits
 
