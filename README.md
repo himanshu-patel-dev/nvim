@@ -395,6 +395,22 @@ return {
 
 Open lazy git in nvim with `<leader>lg`
 
+
+## Maximizer of split
+
+```lua
+return {
+  {
+    "szw/vim-maximizer",
+    keys = {
+      { "<leader>m", ":MaximizerToggle<CR>", desc = "Toggle Maximize Split" },
+    }
+  }
+}
+```
+
+Use `<leader>m` to toggle splits to maximum.
+
 ## To Do
 
 - Complete Basics: https://www.youtube.com/watch?v=_6OqJrdbfs0
@@ -402,4 +418,3 @@ Open lazy git in nvim with `<leader>lg`
 
 - Save editor state when quit
 - Manage multiple tabs
-- Max or Minimize splits
