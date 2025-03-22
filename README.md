@@ -397,6 +397,9 @@ Open lazy git in nvim with `<leader>lg`
 
 ## To Do
 
+- Complete Basics: https://www.youtube.com/watch?v=_6OqJrdbfs0
+- Understand Lazygit: https://www.youtube.com/watch?v=Ihg37znaiBo
+
 - Save editor state when quit
 - Manage multiple tabs
 - Max or Minimize splits
