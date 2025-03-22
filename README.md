@@ -357,14 +357,45 @@ export PATH="$PATH:$HOME/.nvm/versions/node/v22.14.0/bin/"
   10. `tb` toggle git show blame line.
   11. `tD` toggle git show deleted.
 
-## To Do
+- Install [lazygit](https://github.com/jesseduffield/lazygit?tab=readme-ov-file#ubuntu)
 
-- Add [lazygit](https://github.com/jesseduffield/lazygit?tab=readme-ov-file#ubuntu)
-  and [nvim plugin](https://github.com/kdheepak/lazygit.nvim)
-  1. Check if we are able to fetch relevant PR which made chages.
-  2. See blame per line
-  3. Check diff
-  4. Int. Rebase
+```bash
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz lazygit
+sudo install lazygit -D -t /usr/local/bin/
+```
+
+- Install lazygit vim plugin
+Create a file `lazygit.lua`
+
+```lua
+-- nvim v0.8.0
+return {
+    "kdheepak/lazygit.nvim",
+    lazy = true,
+    cmd = {
+        "LazyGit",
+        "LazyGitConfig",
+        "LazyGitCurrentFile",
+        "LazyGitFilter",
+        "LazyGitFilterCurrentFile",
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = {
+        { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
+    }
+}
+```
+
+Open lazy git in nvim with `<leader>lg`
+
+## To Do
 
 - Save editor state when quit
 - Manage multiple tabs
