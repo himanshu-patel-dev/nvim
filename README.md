@@ -327,15 +327,38 @@ npm --version
 nvm install --lts
 
 # then install markdownlint
-npm install -g markdownlint-cl
+npm install -g markdownlint-cli
 # check
 markdownlint --version
 
+# add below line to .bashrc
+export PATH="$PATH:$HOME/.nvm/versions/node/v22.14.0/bin/"
+
 ```
+
+## Neo Tree
+
+- Comes default with kickstarter.
+- Open and close tree with `\`.
+
+## Git
+
+- Refer [gitsignes](https://github.com/lewis6991/gitsigns.nvim)
+- Keymap for `gitsigns`
+  1. `hs` stage hunk.
+  2. `hr` reset hunk.
+  3. `hS` stage buffer.
+  4. `hu` undo stage hunk.
+  5. `hR` reset buffer.
+  6. `hp` preview hunk.
+  7. `hb` blame line.
+  8. `hd` diff against index.
+  9. `hD` diff agaist last commit.
+  10. `tb` toggle git show blame line.
+  11. `tD` toggle git show deleted.
 
 ## To Do
 
-- Add gitsignes as seperate plugin one: [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
 - Add [lazygit](https://github.com/jesseduffield/lazygit?tab=readme-ov-file#ubuntu)
   and [nvim plugin](https://github.com/kdheepak/lazygit.nvim)
   1. Check if we are able to fetch relevant PR which made chages.
