@@ -395,7 +395,6 @@ return {
 
 Open lazy git in nvim with `<leader>lg`
 
-
 ## Maximizer of split
 
 ```lua
@@ -415,6 +414,8 @@ Use `<leader>m` to toggle splits to maximum.
 
 - Complete Basics: https://www.youtube.com/watch?v=_6OqJrdbfs0
 - Understand Lazygit: https://www.youtube.com/watch?v=Ihg37znaiBo
+- Explore [Copilot in nvim](https://www.youtube.com/watch?v=c9y7bKk-R7U)
+- Session Management [Here](https://github.com/Shatur/neovim-session-manager)
 
 - Save editor state when quit
 - Manage multiple tabs
