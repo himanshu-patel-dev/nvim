@@ -464,3 +464,35 @@ use this plugin
 2. Remove indent guide lines
 3. Remove gitsigns
 
+
+add below to `init.lua` and use <C-i> to toggle
+
+```lua
+vim.keymap.set("n", "<C-i>", function()
+  local ok_ibl, ibl = pcall(require, "ibl")
+  local ok_gitsigns, gitsigns = pcall(require, "gitsigns")
+
+  -- Check if line numbers are currently ON or OFF
+  local status = vim.wo.number
+
+  -- Toggle both number and relative number
+  vim.wo.number = not status
+  vim.wo.relativenumber = not status
+
+  -- Toggle Indent Lines
+  if ok_ibl then
+    vim.g.indent_blankline_enabled = not status
+    ibl.setup({ enabled = not status })
+  end
+
+  -- Toggle Git Signs
+  if ok_gitsigns then
+    gitsigns.toggle_signs(not status)
+  end
+
+  -- Notify User
+  print("Indent Lines: " .. (not status and "ON" or "OFF") ..
+        ", Line Numbers: " .. (not status and "ON" or "OFF") ..
+        ", Git Signs: " .. (not status and "ON" or "OFF"))
+end, { desc = "Toggle indent lines, line numbers & git signs" })
+```
