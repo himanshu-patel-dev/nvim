@@ -90,6 +90,34 @@ P.S. You can delete this when you're done too. It's your config now! :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.opt.clipboard = 'unnamedplus'
+
+-- -----------------------------------------------------------
+-- get the nvim ready to copy text
+-- 1. remove line numbers
+-- 2. remove indent guide lines
+
+vim.keymap.set('n', '<C-i>', function()
+  local ok, ibl = pcall(require, 'ibl')
+
+  -- Check if line numbers are currently ON or OFF
+  local status = vim.wo.number
+
+  -- Toggle both based on number status
+  vim.wo.number = not status -- Toggle number
+  vim.wo.relativenumber = not status -- Toggle relative number
+
+  if ok then
+    vim.g.indent_blankline_enabled = not status -- Sync indent status with number
+    ibl.setup { enabled = not status }
+  end
+
+  -- Notify user
+  print('Indent Lines: ' .. (not status and 'ON' or 'OFF') .. ', Line Numbers: ' .. (not status and 'ON' or 'OFF'))
+end, { desc = 'Toggle indent lines & line numbers based on number status' })
+
+-- ---------------------------------------------------------
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
 

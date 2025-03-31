@@ -410,12 +410,57 @@ return {
 
 Use `<leader>m` to toggle splits to maximum.
 
-## To Do
+## Save Session
 
-- Complete Basics: https://www.youtube.com/watch?v=_6OqJrdbfs0
-- Understand Lazygit: https://www.youtube.com/watch?v=Ihg37znaiBo
-- Explore [Copilot in nvim](https://www.youtube.com/watch?v=c9y7bKk-R7U)
-- Session Management [Here](https://github.com/Shatur/neovim-session-manager)
+Refer this: [auto-session](https://github.com/rmagatti/auto-session)
 
-- Save editor state when quit
-- Manage multiple tabs
+use this plugin
+
+```lua
+  return {    
+    'rmagatti/auto-session',    
+    lazy = false,                                                                                                                                                                                           
+    keys = {    
+      -- Will use Telescope if installed or a vim.ui.select picker otherwise    
+      { '<C-r>', '<cmd>SessionSearch<CR>', desc = 'Session search' },    
+      { '<C-s>', '<cmd>lua require("auto-session").SaveSession(vim.fn.input("Session Name: "))<CR>', desc = 'Save session with name' },    
+      -- do <C-r> to see list of sessions and then use <C-d> to delete sessions    
+      { '<C-d>', '<cmd>SessionDelete<CR>', desc = 'Delete session' },    
+    },    
+  
+    ---enables autocomplete for opts    
+    ---@module "auto-session"    
+    ---@type AutoSession.Config    
+    opts = {    
+      -- ⚠️ This will only work if Telescope.nvim is installed    
+      -- The following are already the default values, no need to provide them if these are already the settings you want.    
+      session_lens = {    
+        -- If load_on_setup is false, make sure you use `:SessionSearch` to open the picker as it will initialize everything first    
+        load_on_setup = true,    
+        previewer = false,    
+        mappings = {    
+          -- Mode can be a string or a table, e.g. {"i", "n"} for both insert and normal mode    
+          delete_session = { 'i', '<C-D>' },    
+          alternate_session = { 'i', '<C-S>' },    
+          copy_session = { 'i', '<C-Y>' },    
+        },    
+        -- Can also set some Telescope picker options    
+        -- For all options, see: https://github.com/nvim-telescope/telescope.nvim/blob/master/doc/telescope.txt#L112    
+        theme_conf = {    
+          border = true,    
+          -- layout_config = {    
+          --   width = 0.8, -- Can set width and height as percent of window    
+          --   height = 0.5,    
+          -- },    
+        },    
+      },    
+    },    
+  }
+```
+
+## How to make file - Copy ready
+
+1. Remove line numbers
+2. Remove indent guide lines
+3. Remove gitsigns
+
