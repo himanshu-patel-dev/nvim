@@ -3,7 +3,7 @@ return {
   version = '*',
   config = function()
     require('toggleterm').setup {
-      size = 40, -- Height for horizontal terminal
+      size = 20, -- Height for horizontal terminal
       open_mapping = [[<C-\>]], -- Default key to toggle
       shade_terminals = true,
       direction = 'float', -- Options: 'vertical' | 'horizontal' | 'tab' | 'float'

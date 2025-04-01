@@ -96,25 +96,40 @@ vim.opt.clipboard = 'unnamedplus'
 -- get the nvim ready to copy text
 -- 1. remove line numbers
 -- 2. remove indent guide lines
+-- 3. gitsignes toggle
 
 vim.keymap.set('n', '<C-i>', function()
-  local ok, ibl = pcall(require, 'ibl')
+  local ok_ibl, ibl = pcall(require, 'ibl')
+  local ok_gitsigns, gitsigns = pcall(require, 'gitsigns')
 
   -- Check if line numbers are currently ON or OFF
   local status = vim.wo.number
 
-  -- Toggle both based on number status
-  vim.wo.number = not status -- Toggle number
-  vim.wo.relativenumber = not status -- Toggle relative number
+  -- Toggle both number and relative number
+  vim.wo.number = not status
+  vim.wo.relativenumber = not status
 
-  if ok then
-    vim.g.indent_blankline_enabled = not status -- Sync indent status with number
+  -- Toggle Indent Lines
+  if ok_ibl then
+    vim.g.indent_blankline_enabled = not status
     ibl.setup { enabled = not status }
   end
 
-  -- Notify user
-  print('Indent Lines: ' .. (not status and 'ON' or 'OFF') .. ', Line Numbers: ' .. (not status and 'ON' or 'OFF'))
-end, { desc = 'Toggle indent lines & line numbers based on number status' })
+  -- Toggle Git Signs
+  if ok_gitsigns then
+    gitsigns.toggle_signs(not status)
+  end
+
+  -- Notify User
+  print(
+    'Indent Lines: '
+      .. (not status and 'ON' or 'OFF')
+      .. ', Line Numbers: '
+      .. (not status and 'ON' or 'OFF')
+      .. ', Git Signs: '
+      .. (not status and 'ON' or 'OFF')
+  )
+end, { desc = 'Toggle indent lines, line numbers & git signs' })
 
 -- ---------------------------------------------------------
 
@@ -225,10 +240,14 @@ vim.keymap.set('n', '<C-,>', ':tabprevious<CR>', { noremap = true, silent = true
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<leader>h', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<leader>l', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<leader>j', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<leader>k', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- split windows
+vim.keymap.set('n', '<leader>s', '<C-w>s', { desc = 'Horizontal Split' })
+vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = 'Vertical Split' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
