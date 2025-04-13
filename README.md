@@ -68,6 +68,7 @@ To start tutor, just open nvim and type `:Tutor`
 Install dependencies as
 
 ```bash
+sudo apt install curl
 sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update
 sudo apt install make gcc ripgrep unzip git xclip neovim
