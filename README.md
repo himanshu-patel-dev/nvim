@@ -3,6 +3,7 @@
 ## Install nvim
 
 ```bash
+sudo apt install curl
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 sudo rm -rf /opt/nvim
 sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
@@ -68,7 +69,6 @@ To start tutor, just open nvim and type `:Tutor`
 Install dependencies as
 
 ```bash
-sudo apt install curl
 sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update
 sudo apt install make gcc ripgrep unzip git xclip neovim
